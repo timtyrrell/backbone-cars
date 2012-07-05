@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 
 gem 'backbone-on-rails'
-gem 'sqlite3'
 gem 'heroku'
 gem 'jquery-rails'
 gem 'pusher'
@@ -15,6 +14,7 @@ end
 
 group :development, :test do
   gem 'mysql'
+  gem 'sqlite3'
   gem 'backbone-jasmine'
 end
 
