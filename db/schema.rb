@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120702152920) do
     t.string   "image"
     t.boolean  "featured",   :default => false
     t.integer  "price"
+    t.boolean  "bought",     :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end

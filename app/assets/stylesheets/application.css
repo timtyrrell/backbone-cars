@@ -15,6 +15,9 @@
 #main {
    margin-top:48px;
 }
+.cars-view {
+	margin-bottom:28px;
+}
 div.car-border {
 	float:left;
 	margin-top:24px;
@@ -34,14 +37,17 @@ div.car-border {
 	box-shadow: 0 0 4px rgba(50, 50, 50, 0.5);
 }
 div.car {
-	position: relative;
+	float:left;
+	margin-top:24px;
+	margin-left:6px;
+	margin-right:6px;
 	background: white;
 	border: 1px solid #999999;
 	color:#ffffff;
 	padding-left:6px;
 	padding-right:6px;
 	padding-top:4px;
-	padding-bottom:4px;
+	padding-bottom:6px;
 	height:auto;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -88,4 +94,33 @@ div.car img {
 }
 div.car p {
 	color:#000000;
+}
+div.car.bought {
+	opacity:0.3;
+	filter:alpha(opacity=30); /* For IE8 and earlier */
+}
+
+
+/**** Transitions ****/
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
 }

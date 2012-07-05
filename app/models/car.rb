@@ -13,6 +13,10 @@ class Car < ActiveRecord::Base
 		make.name
 	end
 
+	def dollar_amount
+		ActionController::Base.helpers.number_to_currency(self[:price])
+	end
+
 	def self.by_filter(country_name_str, make_name_str)
 		by_make(make_name_str)
   	end

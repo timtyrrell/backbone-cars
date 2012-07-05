@@ -36,6 +36,7 @@ var DashboardRouter = Backbone.Router.extend({
 		color = color || "all";
 		this.filterView.setFilter(country, make, carmodel);
 		this.filterView.render();
+		this.colorView.setColor(color);
 		this.carView.setFilters(country, make, carmodel, color);
 		this.carView.render();
 	}

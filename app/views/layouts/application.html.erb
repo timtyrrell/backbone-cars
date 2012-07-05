@@ -61,21 +61,15 @@
 
     </div> <!--! end of #main -->
 
-
   <script>
 
-    //WEB_SOCKET_DEBUG = true;
-    //var pusher = new Pusher('<%= ENV['PUSHER_KEY'] %>');
-
-    // change underscore settings to work with rails
-    _.templateSettings = {
-      interpolate: /\{\{\=(.+?)\}\}/g,
-      evaluate: /\{\{(.+?)\}\}/g    
-    };
+      // change underscore settings to work with rails
+      _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g    
+      };
 
   </script>
-
-  <%= render 'permissions/permissions' %>
   
   <%= yield :js %>
 

@@ -1,4 +1,4 @@
-var CarList = Backbone.Collection.extend({
+var CarList = Backbone.LiveCollection.extend({
 	
 	model: Car
 

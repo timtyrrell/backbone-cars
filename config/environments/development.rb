@@ -34,4 +34,7 @@ Cars::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Attempt to stop Windows from crashing
+  config.log_level = :warn if RUBY_PLATFORM.downcase.include?('w32')
 end

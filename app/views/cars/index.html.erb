@@ -25,6 +25,19 @@
 
 <% content_for :js do %>
 
+<script>
+	
+	var PermissionModel = Backbone.Model.extend({			
+		defaults : {
+			canBid : true // use CanCan or your favorite role-based gem here to control access
+		}
+	});
+
+	var Permissions = new PermissionModel();
+	    
+</script>
+
+<!-- TODO Need to use JST and .eco instead -->
 <%= render 'layouts/filter-template' %>
 <%= render 'layouts/color-template' %>
 <%= render 'layouts/car-template' %>
@@ -34,22 +47,24 @@
 <%= javascript_include_tag "views/color" %>
 <%= javascript_include_tag "views/car" %>
 
-<script>
-		
-	$(document).ready(function(){	
+<script>		 
+
+	$(document).ready(function() {	
+	
+		var pusher = new Pusher('0c6b8acfaac4f4a459d7');
 
 		var countryList = new CountryList();
 		var makeList = new MakeList();
-		var carmodelList = new CarList();
+		var carmodelList = new CarModelList();
 		var filterView = new FilterView({countryCollection: countryList, makeCollection: makeList, carmodelCollection: carmodelList});
 
 		var colorView = new ColorView();
 
 		var carList = new CarList();
+		carList.live({pusher: pusher, channelName: "911", eventType: "car"});
 		var carListView = new CarListView({collection:carList});
 		carList.reset(<%=get_json("cars", "index", @cars)%>);
 
-  		// TODO This should probably be in the setup file somewhere
 	    var dashboardRouter = new DashboardRouter({filterView: filterView, colorView: colorView, carView: carListView});
 	    Backbone.history.start({pushState: true});
 
@@ -73,8 +88,8 @@
 		//   Masonry
 		//
 		$('.cars-view').masonry({
-			itemSelector: 'div.car-border',
-			width: 182,
+			itemSelector: 'div.car',
+			width: 174,
 			isAnimated: !Modernizr.csstransitions,
 			animationOptions: {
 			   duration: 900

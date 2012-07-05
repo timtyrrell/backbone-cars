@@ -7,6 +7,7 @@ class CreateCars < ActiveRecord::Migration
       t.string :image
       t.boolean :featured, default: false
       t.integer :price
+      t.boolean :bought, default: false
 
       t.timestamps
     end
