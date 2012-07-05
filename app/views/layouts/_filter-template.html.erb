@@ -1,0 +1,39 @@
+<script type="text/underscore-template" id="filterTemplate">
+
+	{{ if (country) { }}
+		<div class="btn-group" id="all-countries">
+		    <button class="btn btn-primary dropdown-toggle title" data-toggle="dropdown">
+		    <span class="choice-title">All Countries</span>
+		    <span class="caret"></span>
+		    </button>
+		    <ul class="country-dropdown-menu dropdown-menu">
+		    	<li><a href="#" class="country-filter all-country-filter" data-filter-type="all">All Countries</a></li>
+		    </ul>
+		</div>
+	{{ } }}
+
+	{{ if (make) { }}
+		<div class="btn-group" id="all-makes">
+		    <button class="btn btn-primary dropdown-toggle title" data-toggle="dropdown">
+		    <span class="choice-title">All Makes</span>
+		    <span class="caret"></span>
+		    </button>
+		    <ul class="make-dropdown-menu dropdown-menu">
+		    	<li><a href="#" class="make-filter all-make-filter" data-filter-type="all">All Makes</a></li>
+		    </ul>
+		</div>
+	{{ } }}
+
+	{{ if (carmodel) { }}
+		<div class="btn-group" id="all-carmodels">
+		    <button class="btn btn-primary dropdown-toggle title" data-toggle="dropdown">
+		    <span class="choice-title">All Cars</span>
+		    <span class="caret"></span>
+		    </button>
+		    <ul class="carmodel-dropdown-menu dropdown-menu">
+		    	<li><a href="#" class="carmodel-filter all-carmodel-filter" data-filter-type="all">All Cars</a></li>
+		    </ul>
+		</div>
+	{{ } }}
+
+</script>

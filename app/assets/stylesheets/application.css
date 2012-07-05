@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap.css
+ *= require bootstrap-responsive.css
+*/
+
+#main {
+   margin-top:48px;
+}
+div.car-border {
+	float:left;
+	margin-top:24px;
+	margin-left:6px;
+	margin-right:6px;
+	padding: 3px;
+	padding-top:12px;
+	border: 1px solid white;
+	border-color: rgba(255, 255, 255, 0.75);
+	background: rgba(255, 255, 255, 0.2);
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-background-clip: padding-box;
+	border-radius: 8px;
+	-moz-box-shadow: 0 0 4px rgba(50, 50, 50, 0.5);
+	-webkit-box-shadow: 0 0 4px rgba(50, 50, 50, 0.5);
+	box-shadow: 0 0 4px rgba(50, 50, 50, 0.5);
+}
+div.car {
+	position: relative;
+	background: white;
+	border: 1px solid #999999;
+	color:#ffffff;
+	padding-left:6px;
+	padding-right:6px;
+	padding-top:4px;
+	padding-bottom:4px;
+	height:auto;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-background-clip: padding-box;
+	border-radius: 8px;
+	-moz-box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+	-webkit-box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+div.car h3 {
+	position:relative;
+	font-size:14px;
+	top:-16px;
+	text-align:center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-background-clip: padding-box;
+	border-radius: 8px;
+	-moz-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	-webkit-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background:#999999;
+	background: -moz-linear-gradient(
+		top,
+		#999999,
+		#cccccc
+	);
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(#999999),
+		to(#cccccc)
+	);
+}
+div.car img {
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-webkit-background-clip: padding-box;
+	border-radius: 8px;
+}
+div.car p {
+	color:#000000;
+}

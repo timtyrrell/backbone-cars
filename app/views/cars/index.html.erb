@@ -1,0 +1,88 @@
+<div class="span12">
+
+	<div class="row-fluid">
+
+		<div class="span12 page-title">
+
+			<div class="btn-toolbar">
+				<div class="filters-view"></div>
+			</div>
+
+			<div class="colors-view"></div>
+
+		</div>
+
+	</div> <!-- end the widgets -->
+
+	<div class="row-fluid">
+
+		<div class="span12 cars-view"></div>
+
+	</div>
+
+</div>
+
+
+<% content_for :js do %>
+
+<%= render 'layouts/filter-template' %>
+<%= render 'layouts/color-template' %>
+<%= render 'layouts/car-template' %>
+
+<!-- TODO this shouldn't be here, it should be in the application.js -->
+<%= javascript_include_tag "views/filter" %>
+<%= javascript_include_tag "views/color" %>
+<%= javascript_include_tag "views/car" %>
+
+<script>
+		
+	$(document).ready(function(){	
+
+		var countryList = new CountryList();
+		var makeList = new MakeList();
+		var carmodelList = new CarList();
+		var filterView = new FilterView({countryCollection: countryList, makeCollection: makeList, carmodelCollection: carmodelList});
+
+		var colorView = new ColorView();
+
+		var carList = new CarList();
+		var carListView = new CarListView({collection:carList});
+		carList.reset(<%=get_json("cars", "index", @cars)%>);
+
+  		// TODO This should probably be in the setup file somewhere
+	    var dashboardRouter = new DashboardRouter({filterView: filterView, colorView: colorView, carView: carListView});
+	    Backbone.history.start({pushState: true});
+
+		$(".filters-view").append(filterView.el);
+		$(".colors-view").append(colorView.render().el);
+		$(".cars-view").append(carListView.render().el);
+
+		// set all the countries directly into the countryList, to save a request
+		countryList.reset(<%=get_json("countries", "index", @countries)%>);
+
+		// REMEMBER - fetch is async!!  So you can't call carList.fetch immediately after, you have to do it once
+		// the makeList.fetch completes
+		makeList.fetch({
+							url: makeList.url + "?country_name=" + filterView.country,
+							success: function(collection) {
+										carmodelList.fetch({url: carmodelList.url + "?make_name=" + filterView.make + "&country_name=" + filterView.country});
+							}
+						});
+
+		//
+		//   Masonry
+		//
+		$('.cars-view').masonry({
+			itemSelector: 'div.car-border',
+			width: 182,
+			isAnimated: !Modernizr.csstransitions,
+			animationOptions: {
+			   duration: 900
+			}
+		});
+
+	});
+
+</script>
+
+<% end %>
