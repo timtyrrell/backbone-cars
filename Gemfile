@@ -13,7 +13,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'mysql'
   gem 'sqlite3'
   gem 'backbone-jasmine'
 end
