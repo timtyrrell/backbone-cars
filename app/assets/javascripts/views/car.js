@@ -20,6 +20,7 @@ var CarView = Backbone.View.extend({
 			$(this.el).addClass("bought");
 		}
 
+		this.model.trigger("masonry", "reload");
 		return this;
 	},
 

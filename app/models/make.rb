@@ -6,7 +6,7 @@ class Make < ActiveRecord::Base
 		country.name
 	end
 
-	# TODO Clean this function up
+	# TODO This function is hacked together for now
 	def self.by_country_name(country_name)
 	  	if country_name == "all"
 	  		where("id > ?", 0)

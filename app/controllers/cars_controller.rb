@@ -4,10 +4,10 @@ class CarsController < ApplicationController
 	def index  
 
 	    if !params[:country_name].blank?  
-	    	# TODO need to add by_country
-	      	@cars = Car.by_make(params[:make_name]).find(:all, :group => "name")
+	      	@cars = Car.by_country(params[:country_name]).by_make(params[:make_name]).find(:all, :group => "name")
 	    else      
 	    	@cars = Car.all
+	    	@cars = @cars.sort_by{rand}
 			@countries = Country.all
 	    end
 

@@ -1,9 +1,6 @@
 class Car < ActiveRecord::Base
 	belongs_to :make
-
-	def country
-		make.country
-	end
+    belongs_to :country
 
 	def country_name
 		country.name
@@ -21,17 +18,20 @@ class Car < ActiveRecord::Base
 		by_make(make_name_str)
   	end
 
-  	# TODO Clean this function up
+  	# TODO This function is hacked together for now
   	def self.by_country(country_name_str)
-	    if country_name_str != "all"
-	     	where(country_name => country_name_str)
+	    if country_name_str == "all"
+            where("id > ?", 0)
+        else
+            country_id = Country.where(:name => country_name_str).first.id
+	     	where(:country_id => country_id)
 	    end
   	end
 
-  	# TODO Clean this function up
+  	# TODO This function is hacked together for now
   	def self.by_make(make_name_str)
 	    if make_name_str == "all"
-	    	where("cars.id > ?", 0)
+	    	where("id > ? ", 0)
 	    else
 	    	make_id = Make.where(:name => make_name_str).first.id
 	    	where(:make_id => make_id)

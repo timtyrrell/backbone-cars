@@ -37,7 +37,7 @@
 	    
 </script>
 
-<!-- TODO Need to use JST and .eco instead -->
+<!-- TODO Need to use JST and .ejs instead -->
 <%= render 'layouts/filter-template' %>
 <%= render 'layouts/color-template' %>
 <%= render 'layouts/car-template' %>
@@ -77,12 +77,18 @@
 
 		// REMEMBER - fetch is async!!  So you can't call carList.fetch immediately after, you have to do it once
 		// the makeList.fetch completes
-		makeList.fetch({
-							url: makeList.url + "?country_name=" + filterView.country,
-							success: function(collection) {
-										carmodelList.fetch({url: carmodelList.url + "?make_name=" + filterView.make + "&country_name=" + filterView.country});
-							}
-						});
+		// makeList.fetch({
+		// 					url: makeList.url + "?country_name=" + filterView.country,
+		// 					success: function(collection) {
+		// 								carmodelList.fetch({url: carmodelList.url + "?make_name=" + filterView.make + "&country_name=" + filterView.country});
+		// 					}
+		// 				});
+		makeList.fetchWithParams(
+				{
+					success: function(collection) {
+										carmodelList.fetchWithParams({},{make_name: filterView.make, country_name: filterView.country});
+					}
+				}, {country_name: filterView.country});
 
 		//
 		//   Masonry

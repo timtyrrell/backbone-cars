@@ -86,12 +86,15 @@ var FilterView = Backbone.View.extend({
 
 		if (this.countryCollection) {
 			this.countryCollection.on("reset", this.render, this);
+			_.extend(this.countryCollection, Backbone.ParamFetchCollection.prototype);
 		}
 		if (this.makeCollection) {
 			this.makeCollection.on("reset", this.renderMake, this);
+			_.extend(this.makeCollection, Backbone.ParamFetchCollection.prototype);
 		}
 		if (this.carmodelCollection) {
 			this.carmodelCollection.on("reset", this.renderCarmodel, this);
+			_.extend(this.carmodelCollection, Backbone.ParamFetchCollection.prototype);
 		}
 	},
 
@@ -195,10 +198,10 @@ var FilterView = Backbone.View.extend({
 		this.trigger("change_country", this.country);
 
 		// update the make combobox
-		this.makeCollection.fetch({url: this.makeCollection.url + "?country_name=" + this.country});
+		this.makeCollection.fetchWithParams({}, {country_name: this.country});
 
 		// update the car combobox
-		this.carmodelCollection.fetch({url: this.carmodelCollection.url + "?country_name=" + this.country + "&make_name=" + this.make});
+		this.carmodelCollection.fetchWithParams({}, {country_name: this.country, make_name: this.make});
 
 		e.preventDefault();
 
@@ -218,7 +221,7 @@ var FilterView = Backbone.View.extend({
 		this.trigger("change_make", this.make);
 
 		// update the car combobox
-		this.carmodelCollection.fetch({url: this.carmodelCollection.url + "?make_name=" + this.make + "&country_name=" + this.country});
+		this.carmodelCollection.fetchWithParams({},{make_name: this.make, country_name: this.country});
 
 		e.preventDefault();
 	},

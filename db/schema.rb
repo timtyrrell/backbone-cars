@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120702152920) do
 
   create_table "cars", :force => true do |t|
+    t.integer  "country_id"
     t.integer  "make_id"
     t.string   "name"
     t.string   "color"

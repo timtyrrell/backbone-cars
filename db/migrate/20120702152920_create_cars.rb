@@ -1,6 +1,7 @@
 class CreateCars < ActiveRecord::Migration
   def change
     create_table :cars do |t|
+      t.integer :country_id
       t.integer :make_id
       t.string :name
       t.string :color

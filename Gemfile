@@ -7,6 +7,7 @@ gem 'heroku'
 gem 'jquery-rails'
 gem 'pusher'
 gem 'rabl'
+gem 'ejs'
 
 group :production do
   gem 'pg'

@@ -5,6 +5,7 @@ Cars::Application.routes.draw do
   resources :cars, except: [:show]
 
   root to: 'cars#index'
+  match '/dashboard' => 'cars#index'
   match '/dashboard/*filter' => 'cars#index'
 
 end
