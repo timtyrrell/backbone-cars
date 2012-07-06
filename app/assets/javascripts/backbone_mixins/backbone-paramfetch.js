@@ -1,3 +1,20 @@
+/**
+ *  I found myself passing params into a Collection and Model's fetch() so often method that I created a mixin to make it
+ *  easier.  Simply call the fetchWithParams() method with the options as the first argument (optional) and the params
+ *  in a hash as the 2nd argument.
+ *
+ *  v0.1
+ *
+ *  Changes
+ *  0.1 - initial release
+ *
+ *  CabForward - Austin's Leading Rails Shop 
+ *
+ *  Copyright (c) 2012 Michael Abernethy
+ *  MIT Licensed (LICENSE)
+ *
+ */
+
 (function(){
 
     'use strict';
