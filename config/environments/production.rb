@@ -15,7 +15,7 @@ Cars::Application.configure do
   config.assets.compress = false # Mike Abernethy - keep this false for presentation reasons
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true # TODO should be false when everything is working properly
+  config.assets.compile = false # TODO should be false when everything is working properly
 
   # Generate digests for assets URLs
   config.assets.digest = true
