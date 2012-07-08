@@ -22,7 +22,6 @@
 
 </div>
 
-
 <% content_for :js do %>
 
 <script>
@@ -34,14 +33,7 @@
 	});
 
 	var Permissions = new PermissionModel();
-	    
-</script>
-
-<!-- TODO Need to use JST and .ejs instead -->
-
-<!-- TODO this shouldn't be here, it should be in the application.js -->
-
-<script>		 
+	    	 
 
 	$(document).ready(function() {	
 	
@@ -69,18 +61,13 @@
 		// set all the countries directly into the countryList, to save a request
 		countryList.reset(<%=get_json("countries", "index", @countries)%>);
 
-		// REMEMBER - fetch is async!!  So you can't call carList.fetch immediately after, you have to do it once
-		// the makeList.fetch completes
-		// makeList.fetch({
-		// 					url: makeList.url + "?country_name=" + filterView.country,
-		// 					success: function(collection) {
-		// 								carmodelList.fetch({url: carmodelList.url + "?make_name=" + filterView.make + "&country_name=" + filterView.country});
-		// 					}
-		// 				});
+		// REMEMBER - fetch is async!!  This is the biggest mistake with people new to Backbone!
+		// So you can't call carmodelList.fetch on the next line,
+		// you have to do it once the makeList.fetch completes
 		makeList.fetchWithParams(
 				{
 					success: function(collection) {
-										carmodelList.fetchWithParams({},{make_name: filterView.make, country_name: filterView.country});
+						carmodelList.fetchWithParams({},{make_name: filterView.make, country_name: filterView.country});
 					}
 				}, {country_name: filterView.country});
 

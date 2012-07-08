@@ -70,7 +70,6 @@ var CarModelView = Backbone.View.extend({
 var FilterView = Backbone.View.extend({
 
 	tagName : "div",
-	//template : _.template($("#filterTemplate").html()),
 
 	initialize : function(options) {
 

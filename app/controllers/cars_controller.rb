@@ -4,6 +4,7 @@ class CarsController < ApplicationController
 	def index  
 
 	    if !params[:country_name].blank?  
+	    	# TODO doesn't work on PG
 	      	@cars = Car.by_country(params[:country_name]).by_make(params[:make_name]).find(:all, :group => "name")
 	    else      
 	    	@cars = Car.all

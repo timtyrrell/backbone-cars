@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_directory ./lib
-//= require_directory ./backbone
 //= require_directory ./backbone_mixins
 //= require_tree ./models
 //= require_tree ./collections

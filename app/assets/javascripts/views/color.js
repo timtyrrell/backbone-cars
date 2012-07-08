@@ -1,7 +1,5 @@
 var ColorView = Backbone.View.extend({
 
-	//template : _.template($("#colorTemplate").html()),
-
 	initialize : function(options) {
 		this.color = "all";
 		this.template = JST["templates/color"];

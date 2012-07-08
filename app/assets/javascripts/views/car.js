@@ -2,7 +2,6 @@ var CarView = Backbone.View.extend({
 	
 	tagName : "div",
 	className : "car",
-	//template : _.template($("#carTemplate").html()),
 
 	initialize : function() {
 		this.template = JST["templates/car"];
