@@ -1,6 +1,6 @@
 var CountryView = Backbone.View.extend({
 	tagName : "li",
-	template : _.template('<a href="#" class="country-filter" data-filter-type="{{=name}}">{{=name}}</a>'),
+	template : _.template('<a href="#" class="country-filter" data-filter-type="<%=name%>"><%=name%></a>'),
 
 	initialize : function() {
 		this.model.on("remove", this.remove, this);
@@ -23,7 +23,7 @@ var CountryView = Backbone.View.extend({
 
 var MakeView = Backbone.View.extend({
 	tagName : "li",
-	template : _.template('<a href="#" class="make-filter" data-filter-type="{{=name}}">{{=name}}</a>'),
+	template : _.template('<a href="#" class="make-filter" data-filter-type="<%=name%>"><%=name%></a>'),
 
 	initialize : function() {
 		this.model.on("remove", this.remove, this);
@@ -46,7 +46,7 @@ var MakeView = Backbone.View.extend({
 
 var CarModelView = Backbone.View.extend({
 	tagName : "li",
-	template : _.template('<a href="#" class="carmodel-filter" data-filter-type="{{=name}}">{{=name}}</a>'),
+	template : _.template('<a href="#" class="carmodel-filter" data-filter-type="<%=name%>"><%=name%></a>'),
 
 	initialize : function() {
 		this.model.on("remove", this.remove, this);
@@ -70,11 +70,13 @@ var CarModelView = Backbone.View.extend({
 var FilterView = Backbone.View.extend({
 
 	tagName : "div",
-	template : _.template($("#filterTemplate").html()),
+	//template : _.template($("#filterTemplate").html()),
 
 	initialize : function(options) {
 
 		var _this = this;
+
+		this.template = JST["templates/filter"];
 
 		this.country = "all";
 		this.make = "all";

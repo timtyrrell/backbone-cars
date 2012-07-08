@@ -12,10 +12,8 @@
   <meta name="description" content="A demonstration of Backbone and Rails">
   <meta name="author" content="Michael Abernethy - CabForward">
 
-
   <!-- MOBILE -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
     
   <!-- CSS -->
   <%= stylesheet_link_tag "application", media: "all" %>
@@ -60,16 +58,6 @@
       </div> <!--! end of .container -->
 
     </div> <!--! end of #main -->
-
-  <script>
-
-      // change underscore settings to work with rails
-      _.templateSettings = {
-        interpolate: /\{\{\=(.+?)\}\}/g,
-        evaluate: /\{\{(.+?)\}\}/g    
-      };
-
-  </script>
   
   <%= yield :js %>
 
