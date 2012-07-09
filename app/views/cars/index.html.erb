@@ -12,7 +12,7 @@
 
 		</div>
 
-	</div> <!-- end the widgets -->
+	</div> <!-- end the filtering widgets -->
 
 	<div class="row-fluid">
 
@@ -26,44 +26,62 @@
 
 <script>
 	
+	// use this model as a client-side permission/user-role setup
+	// permissions can be accessed by calling it the normal backbone way
+	// e.g.  Permission.get("canBid");
+	// Note - client-side permissions are 100% NOT SAFE.  These values
+	// can be changed by users using any standard browser.  As a result, do not rely
+	// on client-side permissions for real security.  It's really just a convenience.
+	// Everything should be checked on the server.
 	var PermissionModel = Backbone.Model.extend({			
 		defaults : {
 			canBid : true // use CanCan or your favorite role-based gem here to control access
 		}
 	});
-
 	var Permissions = new PermissionModel();
-	    	 
+	  
 
 	$(document).ready(function() {	
 	
+		// Create the Pusher object using our API key
 		var pusher = new Pusher('0c6b8acfaac4f4a459d7');
 
+		// set up the dropdown comboboxes here
 		var countryList = new CountryList();
 		var makeList = new MakeList();
 		var carmodelList = new CarModelList();
 		var filterView = new FilterView({countryCollection: countryList, makeCollection: makeList, carmodelCollection: carmodelList});
 
+		// set up the color filters here
 		var colorView = new ColorView();
 
+		// set up the cars here
 		var carList = new CarList();
+		// We want the cars to be Live using Pusher.  We want every update pushed to every user.
+		// This uses the LiveCollection Backbone Mixin to handle everything automatically
 		carList.live({pusher: pusher, channelName: "911", eventType: "car"});
 		var carListView = new CarListView({collection:carList});
+		// This saves an Ajax call to the browser by embedding the car models right into the page load
 		carList.reset(<%=get_json("cars", "index", @cars)%>);
 
+		// set up the router here - remember the router is like a controller in Rails
 	    var dashboardRouter = new DashboardRouter({filterView: filterView, colorView: colorView, carView: carListView});
+	    // the required Backbone way to start up the router
 	    Backbone.history.start({pushState: true});
 
+	    // finally, append all the views to the page itself
+	    // we don't need to call render() on any of them, because the router already has called render() on all of them
 		$(".filters-view").append(filterView.el);
-		$(".colors-view").append(colorView.render().el);
-		$(".cars-view").append(carListView.render().el);
+		$(".colors-view").append(colorView.el);
+		$(".cars-view").append(carListView.el);
 
 		// set all the countries directly into the countryList, to save a request
 		countryList.reset(<%=get_json("countries", "index", @countries)%>);
 
-		// REMEMBER - fetch is async!!  This is the biggest mistake with people new to Backbone!
-		// So you can't call carmodelList.fetch on the next line,
-		// you have to do it once the makeList.fetch completes
+		// REMEMBER - fetch is async!!  This is the biggest mistake made by people new to Backbone!
+		// So you can't call carmodelList.fetchWithParams on the next line,
+		// you have to do it once the makeList.fetch completes, using the success callback
+		// fetchWithParams uses the ParamFetchCollection Backbone mixin, which calls fetch within it
 		makeList.fetchWithParams(
 				{
 					success: function(collection) {
@@ -72,7 +90,7 @@
 				}, {country_name: filterView.country});
 
 		//
-		//   Masonry
+		//   Masonry set-up
 		//
 		$('.cars-view').masonry({
 			itemSelector: 'div.car',

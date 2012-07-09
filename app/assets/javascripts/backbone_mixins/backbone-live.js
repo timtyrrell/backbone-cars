@@ -34,8 +34,6 @@
 			// default to polling if there's no arguments
 			options = options || {};
 			options.liveType = options.liveType || "poll";
-			options.tries = options.tries || 5;
-			options.interval = options.interval || 5;
 
   			// if they've supplied a Pusher object or an existing pusherChannel, 
   			// set it up to use Pusher
@@ -60,8 +58,8 @@
   			// fail back to polling
   			else {
   				this.liveType = "poll";
-  				this.tries = options.tries;
-  				this.interval = option.interval;
+  				this.tries = options.tries || 5;
+  				this.interval = options.interval || 5000;
   			}
 			
 			if (this.liveType === "pusher") {
@@ -86,6 +84,10 @@
 					if (_this.get(model.id)) {
 						_this.get(model.id).set(model);
 					}
+				});
+
+				this.pusherChannel.bind("reset_" + this.eventType, function(models) {
+					_this.reset(models);
 				});
 
 				this.isLive = true;
@@ -115,7 +117,7 @@
 				        polledCount = polledCount + 1;
 				          
 				        this.fetch(opts);
-				        this.pollTimeout = setTimeout(update, this.interval || 1000);
+				        this.pollTimeout = setTimeout(update, this.interval);
 			      	}
 
 			    }, this);
@@ -159,7 +161,6 @@
 	Backbone.LiveModel = Backbone.Model.extend({
 
 		live : function(options) {
-
 			var _this = this;
 
   			this.opts = options;
@@ -167,29 +168,36 @@
 			// default to polling if there's no arguments
 			options = options || {};
 			options.liveType = options.liveType || "poll";
-			options.tries = options.tries || 5;
-			options.interval = options.interval || 5;
-  			
+
   			// if they've supplied a Pusher object or an existing pusherChannel, 
   			// set it up to use Pusher
   			if (options.pusher || options.pusherChannel) {
   				this.liveType = "pusher";
-	  			// required parameters
 				this.pusher = options.pusher;
 				this.channelName = options.channelName;
-				this.eventType = options.eventType;
+				this.eventType = options.eventType;				
 
 				// optional parameters
 				this.channelType = "";
 				if (options.channelType === "private" || options.channelType === "presence" )
 					this.channelType = options.channelType + "-";
-				
+
 				this.log = options.log || false;
 				if (this.log) {
 					Pusher.log = function(message) {
 						if (window.console && window.console.log) window.console.log(message);
 					};
 				}
+  			} 
+  			// fail back to polling
+  			else {
+  				this.liveType = "poll";
+  				this.tries = options.tries || 5;
+  				this.interval = options.interval || 5000;
+  			}
+  			
+  			
+			if (this.liveType === "pusher") {
 
 				if (!options.pusherChannel) {
 					this.pusherChannel = this.pusher.subscribe(this.channelType + this.channelName);
@@ -231,7 +239,7 @@
 				        polledCount = polledCount + 1;
 				          
 				        this.fetch(opts);
-				        this.pollTimeout = setTimeout(update, this.interval || 1000);
+				        this.pollTimeout = setTimeout(update, this.interval);
 			      	}
 
 			    }, this);
