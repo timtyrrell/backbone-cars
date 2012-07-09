@@ -6,18 +6,19 @@ var CarView = Backbone.View.extend({
 	initialize : function() {
 		this.template = JST["templates/car"];
 		this.model.on("change", this.render, this);
+		this.model.on("remove", this.removeCar, this);
 	},
 
 	render : function() {
 		var html = this.template(this.model.toJSON());
-		$(this.el).html(html);
+		this.$el.html(html);
 
 		if (this.model.get("featured")) {
-			$(this.el).find(".car-image").attr("width", 346);
+			this.$el.find(".car-image").attr("width", 346);
 		}
 
 		if (this.model.get("bought")){
-			$(this.el).addClass("bought");
+			this.$el.addClass("bought");
 		}
 
 		this.model.trigger("masonry", "reload");
@@ -31,6 +32,11 @@ var CarView = Backbone.View.extend({
 	buy : function() {
 		this.model.save("bought", true, {silent:true});
 		this.model.trigger("masonry", "reload");
+	},
+
+	removeCar : function() {
+		this.remove();
+		this.model.trigger("masonry", "reload");
 	}
 
 });
@@ -42,7 +48,6 @@ var CarListView = Backbone.View.extend({
 
 		this.collection.on("reset", this.render, this);
 		this.collection.on("add", this.addCar, this);
-		this.collection.on("remove", this.removeCar, this);
 		this.collection.on("masonry", this.updateMasonry, this);
 	},
 
@@ -50,7 +55,7 @@ var CarListView = Backbone.View.extend({
 
 		var _this = this;
 
-		$(this.el).empty();
+		this.$el.empty();
 
 		var tempCollection = new CarList(this.filterCars());
 
@@ -68,7 +73,7 @@ var CarListView = Backbone.View.extend({
 
 	addCarToView : function(model) {
 		var c = new CarView({model:model});
-		$(this.el).append(c.render().el);
+		this.$el.append(c.render().el);
 		this.updateMasonry();
 	},
 
@@ -76,11 +81,6 @@ var CarListView = Backbone.View.extend({
 		if (this.isFilteredIn(model)) {
 			this.addCarToView(model);
 		}
-	},
-
-	removeCar : function(model) {
-		model.remove();
-		this.updateMasonry();
 	},
 
 	setFilters : function(country, make, carmodel, color) {

@@ -8,4 +8,9 @@ Cars::Application.routes.draw do
   match '/dashboard' => 'cars#index'
   match '/dashboard/*filter' => 'cars#index'
 
+  # for demo purposes only
+  post "/add" => "test#add"
+  post "/remove" => "test#remove"
+  get "/test" => "test#index"
+
 end

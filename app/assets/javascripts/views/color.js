@@ -11,16 +11,16 @@ var ColorView = Backbone.View.extend({
 
 	render : function() {		
 		var html = this.template();
-		$(this.el).html(html);
+		this.$el.html(html);
 		this.renderColorChooser();
 		return this;
 	},
 
 	renderColorChooser : function() {
 		var _this = this;
-		$(this.el).find(".color").removeClass("active");
-		$(this.el).find(".color").each(function() {
-			if ($(this).data("color-type") === this.color) {
+		this.$el.find(".color").removeClass("active");
+		this.$el.find(".color").each(function() {
+			if ($(this).data("color-type") === _this.color) {
 				$(this).addClass("active");
 			}
 		});

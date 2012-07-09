@@ -8,7 +8,7 @@ var CountryView = Backbone.View.extend({
 
 	render : function() {
 		var html = this.template(this.model.toJSON());
-		$(this.el).html(html);
+		this.$el.html(html);
 		return this;
 	},
 
@@ -31,7 +31,7 @@ var MakeView = Backbone.View.extend({
 
 	render : function() {
 		var html = this.template(this.model.toJSON());
-		$(this.el).html(html);
+		this.$el.html(html);
 		return this;
 	},
 
@@ -54,7 +54,7 @@ var CarModelView = Backbone.View.extend({
 
 	render : function() {
 		var html = this.template(this.model.toJSON());
-		$(this.el).html(html);
+		this.$el.html(html);
 		return this;
 	},
 
@@ -114,7 +114,7 @@ var FilterView = Backbone.View.extend({
 		var json = '{"country":' + c + ', "make":' + m + ', "carmodel":' + r + '}';
 
 		var html = this.template($.parseJSON(json));
-		$(this.el).html(html);
+		this.$el.html(html);
 
 		if (this.countryCollection) {
 			this.renderCountry();
@@ -132,13 +132,13 @@ var FilterView = Backbone.View.extend({
 	renderCountry : function() {
 		var _this = this;
 		// keep the first one, which is always "All Countries"
-		$(_this.el).find(".country-filter").slice(1).remove();
+		this.$el.find(".country-filter").slice(1).remove();
 		this.countryCollection.each(function(country){
 			var view = new CountryView({model:country});
 			view.on("select", function(e, v){
 				_this.selectCountry(e, v);
 			});
-			$(_this.el).find(".country-dropdown-menu").append(view.render().el);
+			_this.$el.find(".country-dropdown-menu").append(view.render().el);
 		});
 		$(".country-filter").each(function(){
 			if (_this.country == $(this).data("filter-type"))
@@ -151,13 +151,13 @@ var FilterView = Backbone.View.extend({
 	renderMake : function() {
 		var _this = this;
 		// keep the first one, which is always "All Makes"
-		$(_this.el).find(".make-filter").slice(1).remove();
+		this.$el.find(".make-filter").slice(1).remove();
 		this.makeCollection.each(function(make){
 			var view = new MakeView({model:make});
 			view.on("select", function(e, v){
 				_this.selectMake(e, v);
 			});
-			$(_this.el).find(".make-dropdown-menu").append(view.render().el);
+			_this.$el.find(".make-dropdown-menu").append(view.render().el);
 		});
 		$(".make-filter").each(function(){
 			if (_this.make == $(this).data("filter-type"))
@@ -170,13 +170,13 @@ var FilterView = Backbone.View.extend({
 	renderCarmodel : function() {
 		var _this = this;
 		// keep the first one, which is always "All Cars"
-		$(_this.el).find(".carmodel-filter").slice(1).remove();
+		this.$el.find(".carmodel-filter").slice(1).remove();
 		this.carmodelCollection.each(function(carmodel){
 			var view = new CarModelView({model:carmodel});
 			view.on("select", function(e, v){
 				_this.selectCarmodel(e, v);
 			});
-			$(_this.el).find(".carmodel-dropdown-menu").append(view.render().el);
+			_this.$el.find(".carmodel-dropdown-menu").append(view.render().el);
 		});
 		$(".carmodel-filter").each(function(){
 			if (_this.carmodel == $(this).data("filter-type"))
