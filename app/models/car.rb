@@ -18,7 +18,8 @@ class Car < ActiveRecord::Base
 		by_make(make_name_str)
   	end
 
-  	# TODO This function is hacked together for now
+  	# TODO This function is hacked together for now since I couldn't figure out a better way, and this is
+    # a demo of Backbone, not Rails Scopes
   	def self.by_country(country_name_str)
 	    if country_name_str == "all"
             where("id > ?", 0)
@@ -28,7 +29,8 @@ class Car < ActiveRecord::Base
 	    end
   	end
 
-  	# TODO This function is hacked together for now
+    # TODO This function is hacked together for now since I couldn't figure out a better way, and this is
+    # a demo of Backbone, not Rails Scopes
   	def self.by_make(make_name_str)
 	    if make_name_str == "all"
 	    	where("id > ? ", 0)

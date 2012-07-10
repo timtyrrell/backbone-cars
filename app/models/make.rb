@@ -6,7 +6,8 @@ class Make < ActiveRecord::Base
 		country.name
 	end
 
-	# TODO This function is hacked together for now
+  	# TODO This function is hacked together for now since I couldn't figure out a better way, and this is
+    # a demo of Backbone, not Rails Scopes
 	def self.by_country_name(country_name)
 	  	if country_name == "all"
 	  		where("id > ?", 0)

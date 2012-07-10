@@ -1,6 +1,8 @@
 class MakesController < ApplicationController
   respond_to :json, :html
 
+  	# Backbone will call this code anytime the makeList.fetch() or fetchWithParams() is called 
+  	# Since we've used fetchWithParams(), we can switch off the available parameters
 	def index  
 
 	    if params[:country_name].blank?

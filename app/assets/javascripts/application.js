@@ -10,6 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//  *************
+//
+//  The JS MUST BE loaded in this order!!  No joke!  Everything will fail otherwise.
+//
+//  *************
+//
 //= require ./lib/modernizr-2.5.3.min
 //= require jquery
 //= require jquery_ujs

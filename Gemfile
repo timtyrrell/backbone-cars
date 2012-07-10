@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.6'
 
 gem 'backbone-on-rails'
 gem 'heroku'
@@ -14,6 +14,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'pg'
   gem 'sqlite3'
   gem 'backbone-jasmine'
 end

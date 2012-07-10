@@ -12,7 +12,7 @@ Cars::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = false # Mike Abernethy - keep this false for presentation reasons
+  config.assets.compress = false # Mike Abernethy - keep this false to make them legible for presentation reasons
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
