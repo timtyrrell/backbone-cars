@@ -1,0 +1,30 @@
+<div class="span12">
+
+<button class="btn btn-primary add">Add</button>
+<button class="btn btn-primary remove">Remove</button>
+
+<form action="/add" method="POST" id="addForm"></form>
+<form action="/remove" method="POST" id="removeForm"></form>
+
+</div>
+
+
+<% content_for :js do %>
+
+<script>
+
+    $(document).ready(function(){
+        $(".add").click(function(){
+            $("#addForm").submit();
+        });
+
+        $(".remove").click(function(){
+            $("#removeForm").submit();
+        });
+    });
+
+</script>
+
+<% end %>
+
+
