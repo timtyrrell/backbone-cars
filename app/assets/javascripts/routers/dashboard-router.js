@@ -5,7 +5,7 @@
 var DashboardRouter = Backbone.Router.extend({
 
 	// set up the router with all the views on our page, and then listen to all the events that
-	// can get thrown
+	// can get triggered
 	initialize : function(options) {
 		var _this = this;
 

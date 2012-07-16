@@ -16,9 +16,8 @@ var ColorView = Backbone.View.extend({
 
 	// a very standard render() function that delegates some rendering to another function
 	render : function() {		
-		var html = this.template();
+		var html = this.template(this.model);
 		this.$el.html(html);
-		this.renderColorChooser();
 		return this;
 	},
 

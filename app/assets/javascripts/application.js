@@ -16,15 +16,13 @@
 //
 //  *************
 //
-//= require ./lib/modernizr-2.5.3.min
 //= require jquery
-//= require jquery_ujs
-//= require jquery-ui
 //= require_directory ./lib
+//= require_directory ./jquery_plugins
 //= require_directory ./backbone
 //= require_directory ./backbone_mixins
 //= require_tree ./models
 //= require_tree ./collections
-//= require_tree ./views
 //= require_tree ./templates
+//= require_tree ./views
 //= require_tree ./routers
