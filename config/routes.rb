@@ -1,8 +1,8 @@
 Cars::Application.routes.draw do
 
-  resources :countries, except: [:show]
-  resources :makes, except: [:show]
-  resources :cars, except: [:show]
+  resources :countries
+  resources :makes
+  resources :cars
 
   # These MUST be set up properly in order to get Backbone working properly
   # Rails must be able to route any address onto Backbone to handle properly

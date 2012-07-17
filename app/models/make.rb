@@ -1,6 +1,7 @@
 class Make < ActiveRecord::Base
 	has_many :cars
 	belongs_to :country
+    attr_accessible :name, :country_id
 
 	def country_name
 		country.name

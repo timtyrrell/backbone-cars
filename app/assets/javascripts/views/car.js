@@ -61,6 +61,12 @@ var CarListView = Backbone.View.extend({
 
 	initialize : function() {
 
+		// initialize the filter
+		this.country = "all";
+		this.make = "all";
+		this.carmodel = "all";
+		this.color = "all";
+
 		// listen to events from the underlying Collection and its Models
 		this.collection.on("reset", this.render, this);
 		this.collection.on("add", this.addCar, this);

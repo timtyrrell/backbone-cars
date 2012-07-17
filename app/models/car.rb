@@ -1,6 +1,7 @@
 class Car < ActiveRecord::Base
 	belongs_to :make
     belongs_to :country
+    attr_accessible :country_id, :make_id, :name, :color, :image, :price, :featured
 
 	def country_name
 		country.name

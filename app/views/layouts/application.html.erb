@@ -30,9 +30,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <!-- end Favicon -->
 
-  <!-- CUSTOM HEAD FOR EACH PAGE -->
-  <%= yield(:head) %>
-
 </head>
 
 <body>
@@ -40,7 +37,7 @@
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container-fluid">
-          <%= render 'layouts/navigation' %>
+          <%= link_to "CabForward Backbone Demo", root_path, class: 'brand' %>
         </div>
       </nav>
     </header>

@@ -1,0 +1,94 @@
+<div class="span12">
+
+    <div class="row-fluid">
+
+        <div class="span12 page-title">
+
+            <div class="btn-toolbar">
+                <div class="filters-view"></div>
+            </div>
+
+            <div class="colors-view"></div>
+
+        </div>
+
+    </div> <!-- end the filtering widgets -->
+
+    <div class="row-fluid">
+
+        <div class="span12 cars-view"></div>
+
+    </div>
+
+</div>
+
+<% content_for :js do %>
+
+<script>
+
+    var PermissionModel = Backbone.Model.extend({           
+        defaults : {
+            
+        }
+    });
+    var Permissions = new PermissionModel();
+
+    $(document).ready(function() {  
+
+        // Create the Pusher object using our API key
+        var pusher = new Pusher('0c6b8acfaac4f4a459d7');
+
+        // set up the dropdown comboboxes here
+        var countryList = new CountryList();
+        var makeList = new MakeList();
+        var carmodelList = new CarModelList();
+        var filterView = new FilterView({countryCollection: countryList, makeCollection: makeList, carmodelCollection: carmodelList});
+
+        // set up the color filters here
+        var colorView = new ColorView();
+
+        // set up the cars here
+        var carList = new CarList();
+        // We want the cars to be Live using Pusher.  We want every update pushed to every user.
+        // This uses the LiveCollection Backbone Mixin to handle everything automatically
+        carList.live({pusher: pusher, channelName: "911", eventType: "car"});
+        var carListView = new CarListView({collection:carList});
+        // This saves an Ajax call to the browser by embedding the car models right into the page load
+        carList.reset(<%=get_json("cars", "index", @cars)%>);
+
+        $(".filters-view").append(filterView.render().el);
+        $(".colors-view").append(colorView.render().el);
+        $(".cars-view").append(carListView.render().el);
+
+        // set all the countries directly into the countryList, to save a request
+        countryList.reset(<%=get_json("countries", "index", @countries)%>);
+
+        // REMEMBER - fetch is async!!  This is the biggest mistake made by people new to Backbone!
+        // So you can't call carmodelList.fetchWithParams on the next line,
+        // you have to do it once the makeList.fetch completes, using the success callback
+        // fetchWithParams uses the ParamFetchCollection Backbone mixin, which calls fetch within it
+        makeList.fetchWithParams(
+                {
+                    success: function(collection) {
+                        carmodelList.fetchWithParams({},{make_name: filterView.make, country_name: filterView.country});
+                    }
+                }, {country_name: filterView.country});
+
+        
+        //
+        //   Masonry set-up
+        //
+        $('.cars-view').masonry({
+            itemSelector: 'div.car',
+            width: 174,
+            isAnimated: !Modernizr.csstransitions,
+            animationOptions: {
+               duration: 900
+            }
+        });
+
+    });
+
+</script>
+
+<% end %>

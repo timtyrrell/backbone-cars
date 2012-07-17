@@ -1,0 +1,43 @@
+<div class="span12">
+
+    <div class="row-fluid">
+
+        <div class="span12 page-title">
+
+            <div class="btn-toolbar">
+                <div class="filters-view"></div>
+            </div>
+
+            <div class="colors-view"></div>
+
+        </div>
+
+    </div> <!-- end the filtering widgets -->
+
+    <div class="row-fluid">
+
+        <div class="span12 cars-view"></div>
+
+    </div>
+
+</div>
+
+<% content_for :js do %>
+
+<script>
+
+    var PermissionModel = Backbone.Model.extend({           
+        defaults : {
+            
+        }
+    });
+    var Permissions = new PermissionModel();
+
+    $(document).ready(function() {  
+
+
+    });
+
+</script>
+
+<% end %>
