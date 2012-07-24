@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
-
+gem 'rails'
 gem 'jquery-rails'
 gem 'heroku'
 gem 'pusher'
