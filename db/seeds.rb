@@ -22,7 +22,7 @@ m5 = Make.create(country_id: c3.id, name: "Aston-Martin")
 m6 = Make.create(country_id: c3.id, name: "Bentley")
 m8 = Make.create(country_id: c1.id, name: "Buggatti")
 
-Car.create(country_id: c1.id, make_id: m1.id, name: "911", color: "Black", image: "c1", price: 68000)
+Car.create(country_id: c1.id, make_id: m1.id, name: "911", color: "Black", image: "c1", price: 68000, bought:true)
 Car.create(country_id: c1.id, make_id: m1.id, name: "911", color: "Yellow", image: "c2", price: 59998)
 Car.create(country_id: c1.id, make_id: m1.id, name: "911", color: "Silver", image: "c3", price: 128995)
 Car.create(country_id: c1.id, make_id: m1.id, name: "911", color: "Red", image: "c44", featured: true, price: 104000)
