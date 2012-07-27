@@ -2,12 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'heroku'
 gem 'pusher'
 gem 'rabl'
 gem 'ejs'
-gem 'backbone-jasmine'
 
-
+group :development, :test do
+    gem 'sqlite3'
+    gem 'backbone-jasmine'
+end
