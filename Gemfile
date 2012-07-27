@@ -1,24 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+
+gem 'sqlite3'
 gem 'jquery-rails'
 gem 'heroku'
 gem 'pusher'
 gem 'rabl'
 gem 'ejs'
-
-group :production do
-  gem 'pg'
+gem 'backbone-jasmine'
+if (RUBY_PLATFORM.downcase.include?("linux"))
+    gem 'therubyracer'
+    gem 'execjs'
 end
 
-group :development, :test do
-  gem 'sqlite3'
-  gem 'backbone-jasmine'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'uglifier', '>= 1.0.3'
-end
 
