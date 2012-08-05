@@ -1,17 +1,17 @@
 class CarsController < ApplicationController
   respond_to :json, :html
 
-  	# Backbone will call this code anytime the CarmodelList or CarList calls fetch()
-  	# Since we use fetchWithParams in our Backbone code, we can switch off the available params
+  # Backbone will call this code anytime the CarmodelList or CarList calls fetch()
+  # Since we use fetchWithParams in our Backbone code, we can switch off the available params
 	def index  
-	    if !params[:country_name].blank?  
-	      	@cars = Car.by_country(params[:country_name]).by_make(params[:make_name])
-	      	@cars = @cars.uniq_by{ |car| car.name}
-	    else      
-	    	@cars = Car.all
-	    	@cars = @cars.sort_by{rand}
-			@countries = Country.all
-	    end
+	  if !params[:country_name].blank?  
+	    @cars = Car.by_country(params[:country_name]).by_make(params[:make_name])
+	    @cars = @cars.uniq_by{ |car| car.name}
+	  else
+	  	@cars = Car.all
+	  	@cars = @cars.sort_by{rand}
+      @countries = Country.all
+	  end
 
 		respond_to do |format|
 			format.html
@@ -44,7 +44,5 @@ class CarsController < ApplicationController
 			transforms << t
 			should_keep
 		end
-  	end
-
-
+  end
 end

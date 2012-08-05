@@ -9,6 +9,6 @@ gem 'rabl'
 gem 'ejs'
 
 group :development, :test do
-    gem 'sqlite3'
-    gem 'backbone-jasmine'
+  gem 'sqlite3'
+  gem 'jasmine'
 end

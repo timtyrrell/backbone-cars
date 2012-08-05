@@ -1,5 +1,9 @@
 var Car = Backbone.Model.extend({
 	
-	urlRoot : "/cars"
+	urlRoot : "/cars",
+
+  engine : function(engineType){
+    return engineType + " engine";
+  }
 
 });
