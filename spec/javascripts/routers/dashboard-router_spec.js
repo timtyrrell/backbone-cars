@@ -1,4 +1,4 @@
-describe("DashboardRouter route testing", function(){
+describe("DashboardRouter", function(){
   beforeEach(function(){
     var countryList = new CountryList();
     var makeList = new MakeList();
@@ -14,7 +14,7 @@ describe("DashboardRouter route testing", function(){
                                        carView: this.carListView});
   });
 
-  describe("route testing", function() {
+  describe("route verification", function() {
     beforeEach(function(){
       this.routerSpy = sinon.spy();
 
@@ -47,7 +47,7 @@ describe("DashboardRouter route testing", function(){
 
   });
 
-  describe("test routing methods", function() {
+  describe("routing methods", function() {
     afterEach(function(){
       // Reset URL
       this.router.navigate("");
