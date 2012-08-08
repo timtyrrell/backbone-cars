@@ -14,12 +14,11 @@ describe("CarView", function() {
   });
 
   describe("methods", function() {
+    beforeEach(function() {
+      this.car = new Car();
+      this.carView = new CarView({ model: this.car });
+    });
     describe("#removeCar", function() {
-      beforeEach(function() {
-        this.car = new Car();
-        this.carView = new CarView({ model: this.car });
-      });
-
       it("should call 'remove'", function() {
         var carViewSpy = sinon.spy(this.carView, "remove");
         this.carView.removeCar();
@@ -37,7 +36,21 @@ describe("CarView", function() {
     });
 
     describe("#buy", function() {
+      it("should persist the model", function() {
+        var carSpy = sinon.spy(this.car, "save");
+        this.carView.buy();
 
+        expect(carSpy.callCount).toBe(1);
+        expect(carSpy.calledWith("bought", true, {silent:true})).toBe(true);
+      });
+
+      it("should trigger masonry to reload", function() {
+        var carSpy = sinon.spy(this.car, "trigger");
+        this.carView.buy();
+
+        expect(carSpy.callCount).toBe(1);
+        expect(carSpy.calledWith("masonry", "reload")).toBe(true);
+      });
     });
   });
 
