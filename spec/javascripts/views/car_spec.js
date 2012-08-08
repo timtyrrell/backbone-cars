@@ -18,23 +18,6 @@ describe("CarView", function() {
       this.car = new Car();
       this.carView = new CarView({ model: this.car });
     });
-    describe("#removeCar", function() {
-      it("should call 'remove'", function() {
-        var carViewSpy = sinon.spy(this.carView, "remove");
-        this.carView.removeCar();
-
-        expect(carViewSpy.callCount).toBe(1);
-      });
-
-      it("should trigger masonry to reload", function() {
-        var carSpy = sinon.spy(this.car, "trigger");
-        this.carView.removeCar();
-
-        expect(carSpy.callCount).toBe(1);
-        expect(carSpy.calledWith("masonry", "reload")).toBe(true);
-      });
-    });
-
     describe("#buy", function() {
       it("should persist the model", function() {
         var carSpy = sinon.spy(this.car, "save");
@@ -53,9 +36,26 @@ describe("CarView", function() {
       });
     });
 
-    describe("rendering", function() {
+    describe("#removeCar", function() {
+      it("should call 'remove'", function() {
+        var carViewSpy = sinon.spy(this.carView, "remove");
+        this.carView.removeCar();
 
+        expect(carViewSpy.callCount).toBe(1);
+      });
+
+      it("should trigger masonry to reload", function() {
+        var carSpy = sinon.spy(this.car, "trigger");
+        this.carView.removeCar();
+
+        expect(carSpy.callCount).toBe(1);
+        expect(carSpy.calledWith("masonry", "reload")).toBe(true);
+      });
     });
+
+    // describe("rendering", function() {
+
+    // });
   });
 
   describe("bindings", function() {
@@ -76,7 +76,6 @@ describe("CarView", function() {
   });
 
   describe("events", function() {
-    var server;
     beforeEach(function() {
       this.car = new Car();
       this.carView = new CarView({ model: this.car });
