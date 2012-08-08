@@ -59,7 +59,6 @@ describe("CarView", function() {
       this.car = new Car();
       this.carSpy = sinon.spy(this.car, 'on');
       this.carView = new CarView({ model: this.car });
-      this.carView.template = _.template("");
     });
 
     it("should 'render' on a model change", function() {
@@ -73,14 +72,23 @@ describe("CarView", function() {
   });
 
   describe("events", function() {
+    var server;
     beforeEach(function() {
       this.car = new Car();
       this.carView = new CarView({ model: this.car });
+      this.carView.template = _.template("\
+        <div class=\"car\">\
+          <img class=\"car-image\" src=\"\" width=\"160\">\
+          <p style=\"margin-top:12px;\"><button class=\"btn btn-primary buy\">Buy It!</button></p>\
+        </div>");
       this.carView.render();
     });
 
-    xit("should run 'buy' when clicked", function() {
-      // expect(this.carView.length).toBe(1);
+    it("should run 'buy' when clicked", function() {
+      var ajaxSpy = sinon.spy(jQuery, "ajax");
+      this.carView.$(".buy").click();
+
+      expect(ajaxSpy.callCount).toBe(1);
     });
 
   });
