@@ -52,6 +52,10 @@ describe("CarView", function() {
         expect(carSpy.calledWith("masonry", "reload")).toBe(true);
       });
     });
+
+    describe("rendering", function() {
+
+    });
   });
 
   describe("bindings", function() {
@@ -90,10 +94,5 @@ describe("CarView", function() {
 
       expect(ajaxSpy.callCount).toBe(1);
     });
-  });
-
-
-  describe("rendering", function() {
-
   });
 });
