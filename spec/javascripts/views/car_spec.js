@@ -90,7 +90,6 @@ describe("CarView", function() {
 
       expect(ajaxSpy.callCount).toBe(1);
     });
-
   });
 
 
